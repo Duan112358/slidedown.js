@@ -11,7 +11,7 @@
  *          trigger: '#test-trigger',
  *          title: '底部弹出框测试',
  *          closeButtonText: '官兵来了',
- *          onHide: function(){
+ *          onClose: function(){
  *              console.log('done');
  *          }
  *      }); 
@@ -171,7 +171,7 @@
             html: '',
             closeButtonText: '关闭',
             onShow: noop,
-            onHide: noop
+            onClose: noop
         };
 
         extend(that._options, options);
@@ -234,7 +234,7 @@
         var container = that._container;
         var inner = container.firstElementChild;
 
-        that._options.onHide.call(null, container.querySelector('.slidedown-body'));
+        that._options.onClose.call(null, container.querySelector('.slidedown-body'));
 
         inner.addClass('slide-out-down');
         that._timeoutid && clearTimeout(that._timeoutid);
