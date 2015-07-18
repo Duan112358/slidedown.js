@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+        <meta content="telephone=no" name="format-detection" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>slidedown component demo page</title>
+        <link href="slidedown.css" type="text/css" rel="stylesheet">
+        <style>
+            * {
+                box-sizing: border-box;
+                -webkit-margin-before: 0;
+                -webkit-margin-after: 0;
+                text-decoration: none;
+            }
+            html, body {
+                width: 100%;
+            }
+            body {
+                max-width: 640px;
+                margin: 0 auto;
+            }
+            .demo {
+                margin-top: 200px;
+            }
+            .trigger {
+                border: none;
+                outline: none;
+                box-shadow: none;
+                padding: 10px 20px;
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+<body>
+    <div class="demo">
+        <button class="trigger show-btn">show the slide up modal</button>
+        <div class="content hide">
+            some content to be loaded async
+        </div>
+    </div>
+    <script type="text/javascript" src="slidedown.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            // init slider
+            var slider = new SlideDown({
+                trigger: '.show-btn',
+                title: '底部弹出框测试',
+                closeButtonText: '点我关闭',
+                onShow: loadData,
+                onClose: function(){
+                    console.log('done');
+                }
+            }); 
+        
+            // hide loading indicator after content loaded
+            // you can replace you content here
+            function loadData(){ 
+                setTimeout(function(){
+                    slider.contentLoaded(function(inner){
+                         inner.innerHTML = '<h3>这是异步加载的内容</h3>'; 
+                    }); 
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
