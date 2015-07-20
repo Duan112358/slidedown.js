@@ -33,7 +33,9 @@
 *  closeButtonText: button text to close the modal
 *  trigger: `document.querySelector' to get the trigger
 *  onShow: called when the modal shown
-*  onHide: called when the modal hidden
+*  onClose: called when the modal hidden
+*  show: to show the modal
+*  close: to hide the modal
 *  onContentLoaded: call this func to hide the loading indicator, the modal body will be passed back as param, as callback(inner)
 
 
