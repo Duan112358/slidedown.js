@@ -236,12 +236,16 @@
 
         that._options.onClose.call(null, container.querySelector('.slidedown-body'));
 
+        var onAnimationEnd = function(evt){
+            if(evt.animationName === 'slideOutDown'){
+                inner.removeClass('slide-out-down');
+                container.addClass('hide');
+                inner.removeEventListener('animationend', onAnimationEnd, false);
+            }
+        };
+        inner.addEventListener('animationend', onAnimationEnd, false);
+        inner.addEventListener('webkitAnimationEnd', onAnimationEnd, false);
         inner.addClass('slide-out-down');
-        that._timeoutid && clearTimeout(that._timeoutid);
-        that._timeoutid = setTimeout(function(){
-            inner.removeClass('slide-out-down');
-            container.addClass('hide');
-        }, 500);
         document.body.removeClass('overflow-hidden');
     };
 
